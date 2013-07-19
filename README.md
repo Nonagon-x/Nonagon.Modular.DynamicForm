@@ -1,4 +1,4 @@
 Nonagon.Modular.DynamicForm
 ===========================
 
-The dynamic form module
+The Dynamic Form module which is utilizing Nonagon.Modular framework.

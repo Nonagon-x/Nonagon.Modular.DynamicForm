@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Foundation", "Foundation", "{60733FF0-1DFF-4E5C-84AE-11BE38872BB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nonagon", "..\..\..\..\Foundation\Mono\Nonagon\Nonagon.csproj", "{416A413E-FA2F-4547-BD9F-01C759BD7077}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nonagon.Modular", "..\..\..\Nonagon.Modular\Backend\Mono\Nonagon.Modular\Nonagon.Modular.csproj", "{D9CCF0E7-FD49-4F69-85E2-082115AFE9BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nonagon.Modular.DynamicForm", "Nonagon.Modular.DynamicForm\Nonagon.Modular.DynamicForm.csproj", "{89958056-46C2-40E5-A064-EB3D1F983A69}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{416A413E-FA2F-4547-BD9F-01C759BD7077}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{416A413E-FA2F-4547-BD9F-01C759BD7077}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{416A413E-FA2F-4547-BD9F-01C759BD7077}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{416A413E-FA2F-4547-BD9F-01C759BD7077}.Debug|x86.Build.0 = Debug|Any CPU
+		{416A413E-FA2F-4547-BD9F-01C759BD7077}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{416A413E-FA2F-4547-BD9F-01C759BD7077}.Release|Any CPU.Build.0 = Release|Any CPU
+		{416A413E-FA2F-4547-BD9F-01C759BD7077}.Release|x86.ActiveCfg = Release|Any CPU
+		{416A413E-FA2F-4547-BD9F-01C759BD7077}.Release|x86.Build.0 = Release|Any CPU
+		{89958056-46C2-40E5-A064-EB3D1F983A69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89958056-46C2-40E5-A064-EB3D1F983A69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89958056-46C2-40E5-A064-EB3D1F983A69}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{89958056-46C2-40E5-A064-EB3D1F983A69}.Debug|x86.Build.0 = Debug|Any CPU
+		{89958056-46C2-40E5-A064-EB3D1F983A69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89958056-46C2-40E5-A064-EB3D1F983A69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89958056-46C2-40E5-A064-EB3D1F983A69}.Release|x86.ActiveCfg = Release|Any CPU
+		{89958056-46C2-40E5-A064-EB3D1F983A69}.Release|x86.Build.0 = Release|Any CPU
+		{D9CCF0E7-FD49-4F69-85E2-082115AFE9BD}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{D9CCF0E7-FD49-4F69-85E2-082115AFE9BD}.Debug|Any CPU.Build.0 = Debug|x86
+		{D9CCF0E7-FD49-4F69-85E2-082115AFE9BD}.Debug|x86.ActiveCfg = Debug|x86
+		{D9CCF0E7-FD49-4F69-85E2-082115AFE9BD}.Debug|x86.Build.0 = Debug|x86
+		{D9CCF0E7-FD49-4F69-85E2-082115AFE9BD}.Release|Any CPU.ActiveCfg = Release|x86
+		{D9CCF0E7-FD49-4F69-85E2-082115AFE9BD}.Release|Any CPU.Build.0 = Release|x86
+		{D9CCF0E7-FD49-4F69-85E2-082115AFE9BD}.Release|x86.ActiveCfg = Release|x86
+		{D9CCF0E7-FD49-4F69-85E2-082115AFE9BD}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{416A413E-FA2F-4547-BD9F-01C759BD7077} = {60733FF0-1DFF-4E5C-84AE-11BE38872BB0}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = ..\..\..\..\Foundation\Mono\Nonagon\Nonagon.csproj
+	EndGlobalSection
+EndGlobal
