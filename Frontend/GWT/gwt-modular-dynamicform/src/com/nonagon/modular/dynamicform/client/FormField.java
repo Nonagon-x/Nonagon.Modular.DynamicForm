@@ -21,10 +21,10 @@ public class FormField extends JavaScriptObject {
 
 	protected FormField() {}
 
-	public final native Long getId()/*-{ return this.Id; }-*/;
+	public final native int getId()/*-{ return this.Id; }-*/;
 
-	public final native Long getFormRevisionId()/*-{ return this.FormRevisionId; }-*/;
-	public final native void setFormRevisionId(Long value)/*-{ this.FormRevisionId = value; }-*/;
+	public final native int getFormRevisionId()/*-{ return this.FormRevisionId; }-*/;
+	public final native void setFormRevisionId(int value)/*-{ this.FormRevisionId = value; }-*/;
 	
 	public final native String getFieldCode()/*-{ return this.FieldCode; }-*/;
 	public final native void setFieldCode(String value)/*-{ this.FieldCode = value; }-*/;

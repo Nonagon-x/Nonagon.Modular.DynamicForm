@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 using ServiceStack.OrmLite;
@@ -42,10 +43,20 @@ namespace Nonagon.Modular.DynamicForm.Operations
 				form.Status = FormStatus.Inactive;
 			}
 
-			form.LastUpdatedDate = DateTime.UtcNow;
+			form.LastUpdatedDate = DateTime.Now;
 
 			using(var dbConnection = DbConnectionFactory.OpenDbConnection())
 			{
+				// Check if form instance exists.
+				Boolean isInstanceExists = false;
+				if (form.Id > 0 && form.Revision != null && form.Revision.Id > 0) {
+					var rec = dbConnection.Select<FormInstance> (
+						fi => fi.FormRevisionId == form.Revision.Id);
+
+					if (rec != null && rec.Count > 0)
+						isInstanceExists = true;
+				}
+
 				using(var dbTransaction = dbConnection.BeginTransaction())
 				{
 					// Insert or update Form table depending on if Id presented.
@@ -60,16 +71,26 @@ namespace Nonagon.Modular.DynamicForm.Operations
 					}
 
 					// Insert or update FormRevision table depending on if Id presented.
+					// Or Insert if there is formInstance using it.
 					form.Revision.FormId = form.Id;
 					form.Revision.LastUpdatedDate = form.LastUpdatedDate;
 
-					if(form.Revision.Id <= 0)
+					if(form.Revision.Id <= 0 || isInstanceExists)
 					{
 						form.Revision.CreatedDate = DateTime.Now;
 						form.Status = FormStatus.Inactive;
 
+						if (isInstanceExists)
+							form.Revision.Version += 1;
+
 						dbConnection.Insert(form.Revision);
 						form.Revision.Id = dbConnection.GetLastInsertId();
+
+						if (isInstanceExists) {
+							dbConnection.Update<FormRevision> (
+								new { Status = FormStatus.Inactive }, 
+								p => p.Id != form.Revision.Id && p.FormId == form.Id);
+						}
 					}
 					else
 					{

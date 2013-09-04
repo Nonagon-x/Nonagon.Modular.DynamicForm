@@ -10,7 +10,7 @@ namespace Nonagon.Modular.DynamicForm
 		/// <summary>
 		/// The size is growing automatically by the children.
 		/// </summary>
-		WrapForm,
+		WrapContent,
 
 		/// <summary>
 		/// The height is fixed.

@@ -30,7 +30,15 @@ namespace Nonagon.Modular.DynamicForm.Service.ServiceInterface
 
 			return dynamicFormInterface.GetFormInstanceDetails(param);
 		}
-		
+
+		public Object Get(GetFormInstanceDetailsByRef param)
+		{
+			if(param == null)
+				throw new ArgumentException("param");
+
+			return dynamicFormInterface.GetFormInstanceDetails(param);
+		}
+
 		public Object Post(StoreForm param)
 		{
 			if(param == null)

@@ -20,21 +20,38 @@ namespace Nonagon.Modular.DynamicForm.Operations
 			/// Gets or sets the form instance identifier.
 			/// </summary>
 			/// <value>The form instance identifier.</value>
-			public Int64 FormInstanceId { get; set; }
+			public Int64? FormInstanceId { get; set; }
+
+			/// <summary>
+			/// Gets or sets the reference.
+			/// </summary>
+			/// <value>The reference.</value>
+			public String Reference { get; set; }
 		}
 
 		public override FormInstance Execute(Param param)
 		{
 			using(var dbConnection = DbConnectionFactory.OpenDbConnection())
 			{
-				var formInstance = dbConnection.
-					Select<FormInstance>(
-						q => q.Id == param.FormInstanceId).FirstOrDefault();
+				FormInstance formInstance = null;
+
+				if (param.FormInstanceId != null) {
+
+					formInstance = dbConnection.
+						Select<FormInstance> (
+						q => q.Id == param.FormInstanceId).FirstOrDefault ();
+
+				} else if(param.Reference != null) {
+
+					formInstance = dbConnection.
+						Select<FormInstance> (
+							q => q.Reference == param.Reference).FirstOrDefault ();
+				}
 
 				if(formInstance != null) {
 					formInstance.Values = dbConnection.
 						Select<FormInstanceValue>(
-							q => q.FormInstanceId == param.FormInstanceId).
+							q => q.FormInstanceId == formInstance.Id).
 								Select(q => (FormInstanceValue)q);
 				}
 				

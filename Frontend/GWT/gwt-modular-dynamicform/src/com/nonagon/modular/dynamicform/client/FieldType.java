@@ -18,6 +18,9 @@ public enum FieldType {
 	
 	public static FieldType fromString(String value) {
 
+		if(value == null)
+			return FreeText;
+					
 		return Enum.valueOf(FieldType.class, value);
 	}
 	

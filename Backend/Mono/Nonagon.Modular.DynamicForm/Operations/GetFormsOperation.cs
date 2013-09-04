@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using ServiceStack.OrmLite;
 
 using Nonagon.Modular.Params;
+using System;
 
 namespace Nonagon.Modular.DynamicForm.Operations
 {
@@ -23,7 +24,7 @@ namespace Nonagon.Modular.DynamicForm.Operations
 			using(var dbConnection = DbConnectionFactory.OpenDbConnection())
 			{
 				var ev = OrmLiteConfig.DialectProvider.ExpressionVisitor<Form>();
-				//ev.Where(q => q.Status == FormStatus.Active);
+				ev.Where(q => q.Status != FormStatus.Deleted);
 
 				if(param != null) {
 
@@ -36,8 +37,26 @@ namespace Nonagon.Modular.DynamicForm.Operations
 					ev.Limit(param.Skip, param.Take);
 				}
 
-				return dbConnection.Select<Form>(ev).Select(f => (IForm)f);
+				var forms = dbConnection.Select<Form>(ev);
+				var formVersions = dbConnection.Select<FormVersion> (
+					"select a.formId `FormId`, max(b.version) `Version` from form a inner join formRevision b " +
+					"on a.formId = b.formId " +
+					"group by a.formId").ToList ().ToDictionary (f => f.FormId, f => f.Version);
+
+				foreach(Form form in forms)
+				{
+					form.Revision = new FormRevision ();
+					form.Revision.Version = formVersions[form.Id];
+				}
+
+				return forms.Select (f => (IForm)f);
 			}
 		}
+	}
+
+	internal class FormVersion
+	{
+		public Int64 FormId { get; set; }
+		public Int32 Version { get; set; }
 	}
 }

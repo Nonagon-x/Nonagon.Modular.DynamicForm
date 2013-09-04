@@ -42,7 +42,7 @@ namespace Nonagon.Modular.DynamicForm
 		/// <param name="param">Parameter.</param>
 		public Form GetFormDetails(GetFormDetailsOperation.Param param)
 		{
-			if(param.Version == null)
+			if(param.Version == null && param.RevisionId == null)
 			{
 				Int32 currentFormVersion = Resolve<GetCurrentFormVersionOperation>().
 					Execute(new GetCurrentFormVersionOperation.Param {

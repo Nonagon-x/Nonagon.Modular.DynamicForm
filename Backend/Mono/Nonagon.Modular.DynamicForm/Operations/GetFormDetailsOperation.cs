@@ -26,6 +26,12 @@ namespace Nonagon.Modular.DynamicForm.Operations
 			/// </summary>
 			/// <value>The version.</value>
 			public Int32? Version { get; set; }
+
+			/// <summary>
+			/// Gets or sets the revision identifier.
+			/// </summary>
+			/// <value>The revision identifier.</value>
+			public Int64? RevisionId { get; set; }
 		}
 
 		public override Form Execute(Param input)
@@ -35,9 +41,20 @@ namespace Nonagon.Modular.DynamicForm.Operations
 				var form =
 					dbConnection.FirstOrDefault<Form>(q => q.Id == input.FormId);
 
-				var formRevision = 
-					dbConnection.FirstOrDefault<FormRevision>(
+				FormRevision formRevision = null;
+
+				if (input.Version != null) {
+
+					formRevision = 
+						dbConnection.FirstOrDefault<FormRevision> (
 						q => q.FormId == input.FormId && q.Version == input.Version);
+
+				} else if (input.RevisionId != null) {
+
+					formRevision = 
+						dbConnection.FirstOrDefault<FormRevision> (
+						q => q.FormId == input.FormId && q.Id == input.RevisionId);
+				}
 
 				if(formRevision != null) {
 
@@ -47,7 +64,7 @@ namespace Nonagon.Modular.DynamicForm.Operations
 						dbConnection.Select<FormField>(
 							q => q.FormRevisionId == formRevision.Id);
 					
-					formRevision.Fields = formFields.Select(q => (FormField)q);
+					formRevision.Fields = formFields.Select(q => (FormField)q).ToList();
 				}
 
 				return form;

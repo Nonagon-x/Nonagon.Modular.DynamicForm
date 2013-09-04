@@ -5,11 +5,11 @@ import java.util.Date;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 
-public class FormRevision extends JavaScriptObject {
+public class FormInstance extends JavaScriptObject {
 	
-	public static FormRevision create() {
+	public static FormInstance create() {
 		
-		FormRevision instance = ((FormRevision)JavaScriptObject.createObject());
+		FormInstance instance = ((FormInstance)JavaScriptObject.createObject());
 		instance.init();
 		
 		return instance;
@@ -17,25 +17,21 @@ public class FormRevision extends JavaScriptObject {
 	
 	protected final native void init()/*-{
 		
-		this.__type = "Nonagon.Modular.DynamicForm.FormRevision, Nonagon.Modular.DynamicForm";
+		this.__type = "Nonagon.Modular.DynamicForm.FormInstance, Nonagon.Modular.DynamicForm";
 	}-*/;
 
-	protected FormRevision() {}
-
+	protected FormInstance() {}
+	
 	public final native int getId()/*-{ return this.Id; }-*/;
-	public final native int getFormId()/*-{ return this.FormId; }-*/;
 	
-	public final native int getVersion()/*-{ return this.Version; }-*/;
-	public final native void setVersion(int value)/*-{ this.Version = value; }-*/;
-	
-	public final native String getOutput()/*-{ return this.Output; }-*/;
-	public final native void setOutput(String value)/*-{ this.Output = value; }-*/;
-	
-	public final native FormTemplate getTemplate()/*-{ return this.Template; }-*/;
-	public final native void setTemplate(FormTemplate value)/*-{ this.Template = value; }-*/;
+	public final native String getReference()/*-{ return this.Reference; }-*/;
+	public final native void setReference(String value)/*-{ this.Reference = value; }-*/;
 
-	public final native JsArray<FormField> getFields()/*-{ return this.Fields; }-*/;
-	public final native void setFields(JsArray<FormField> value)/*-{ this.Fields = value; }-*/;
+	public final native int getFormId()/*-{ return this.FormId; }-*/;
+	public final native void setFormId(int value)/*-{ this.FormId = value; }-*/;
+	
+	public final native int getFormRevisionId()/*-{ return this.FormRevisionId; }-*/;
+	public final native void setFormRevisionId(int value)/*-{ this.FormRevisionId = value; }-*/;
 	
 	public final FormStatus getFormStatus() {
 		
@@ -48,6 +44,9 @@ public class FormRevision extends JavaScriptObject {
 		String formStatus = FormStatus.fromEnum(value);
 		jsniSetFormStatus(formStatus);
 	}
+
+	public final native JsArray<FormInstanceValue> getValues()/*-{ return this.Values; }-*/;
+	public final native void setValues(JsArray<FormInstanceValue> value)/*-{ this.Values = value; }-*/;
 
 	public final Date getCreatedDate() { return new Date((long)jsniGetCreatedDate()); } 
 	public final Date getLastUpdatedDate() { return new Date((long)jsniGetLastUpdatedDate()); }

@@ -44,4 +44,13 @@ public abstract class FormElement extends JavaScriptObject {
 	
 	private final native String jsniGetHeight()/*-{ return this.Height; }-*/;
 	private final native void jsniSetHeight(String value)/*-{ this.Height = value; }-*/;
+	
+	// We cannot use instanceof to check the type of JavaScriptObject
+	// the workaround is to compare with the instance field instead.
+
+	public final native <T extends FormElement> boolean isSameTypeAs(FormElement instance)/*-{
+		
+		return (this.__type === instance.__type);
+		
+	}-*/;
 }

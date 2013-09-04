@@ -19,7 +19,7 @@ namespace Nonagon.Modular.DynamicForm
 		/// <value>The identifier of the Form instance.</value>
 		[AutoIncrement]
 		[Alias("FormInstanceID")]
-		public Int64 Id { get; internal set; }
+		public Int64 Id { get; set; }
 		
 		/// <summary>
 		/// Gets the reference.
@@ -27,7 +27,7 @@ namespace Nonagon.Modular.DynamicForm
 		/// <value>The reference.</value>
 		[Required]
 		[StringLength(200)]
-		public String Reference { get; internal set; }
+		public String Reference { get; set; }
 		
 		/// <summary>
 		/// Gets or sets the Form identifier.
@@ -50,14 +50,14 @@ namespace Nonagon.Modular.DynamicForm
 		/// </summary>
 		/// <value>The created date.</value>
 		[Required]
-		public DateTime CreatedDate { get; internal set; }
+		public DateTime CreatedDate { get; set; }
 
 		/// <summary>
 		/// Gets the last updated date.
 		/// </summary>
 		/// <value>The last updated date.</value>
 		[Required]
-		public DateTime LastUpdatedDate { get; internal set; }
+		public DateTime LastUpdatedDate { get; set; }
 
 		/// <summary>
 		/// Gets or sets the status.
